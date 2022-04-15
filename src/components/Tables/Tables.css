@@ -1,0 +1,88 @@
+.table_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid #ccc;
+}
+
+.table_item:hover {
+  background-color: #fff;
+  box-shadow: 4px 4px 20px rgb(0 0 0 / 15%);
+}
+
+.table_item_details {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  /* flex-direction: column; */
+}
+
+.price_date {
+  text-align: end;
+  /* padding-right: 1rem; */
+  display: flex;
+  align-items: center;
+  min-width: 230px;
+  /* width: 50%; */
+  justify-content: flex-end;
+}
+
+.transaction_date {
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 100px;
+}
+
+.transaction_price {
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+.admin_item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.admin-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.admin-email {
+  font-size: 0.75rem;
+}
+.admin_avatar {
+  display: flex;
+}
+
+.category_item {
+  padding: 0.3rem 0;
+}
+
+.table .transaction_title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-height: 1.5rem;
+  max-height: 1.5rem;
+}
+
+@media (max-width: 575px) {
+  .price_date {
+    align-items: flex-end;
+    flex-direction: column;
+  }
+  .transaction_price {
+    padding: 0;
+  }
+  .price_date {
+    min-width: 110px;
+  }
+}

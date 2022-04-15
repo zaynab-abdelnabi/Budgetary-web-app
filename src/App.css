@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main_section {
+  margin-left: 220px;
+  padding: 3rem;
+}
+
+.table {
+  padding: 0;
+  width: 700px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  color: #f2693f;
+}
+
+.swal2-styled {
+  box-shadow: 4px 4px 20px rgb(0 0 0 / 15%) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+  box-shadow: 4px 4px 20px rgb(0 0 0 / 15%) !important;
+  border-radius: 15px !important;
+  color: black;
+}
+
+:root {
+  --animate-duration: 500ms;
+  /* --animate-delay: 0.9s; */
+}
+
+.notFound {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #555;
+}
+
+.notFound .logo_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.notFound .letter_logo {
+  color: #fff;
+  background-color: #df4600;
+}
+
+.notFound .line_logo {
+  background-color: #df4600;
+}
+
+@media (max-width: 992px) {
+  .main_section {
+    margin-left: 0;
+    padding-top: 6rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .page-heading {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .page-heading h1 {
+    padding-bottom: 1rem;
+  }
+}

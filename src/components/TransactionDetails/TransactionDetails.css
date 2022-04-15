@@ -1,0 +1,35 @@
+.transaction_details {
+  width: 700px;
+  padding-top: 2rem;
+}
+
+.description {
+  padding: 2rem 0;
+}
+
+.desc_title {
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.desc_parg {
+  line-height: 1.5rem;
+  text-align: justify;
+}
+
+.transaction_details .price_date {
+  flex-direction: column;
+  padding: 0;
+  min-width: 110px;
+  align-items: flex-end;
+}
+
+.transaction_details .table_item_details {
+  flex-direction: column;
+}
+
+.transaction_details .transaction_date {
+  position: absolute;
+  right: 10%;
+  top: 3%;
+}

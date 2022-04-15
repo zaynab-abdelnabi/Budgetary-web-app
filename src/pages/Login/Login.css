@@ -1,0 +1,148 @@
+.login_page {
+  display: flex;
+}
+
+.login_page > div {
+  width: 100%;
+  height: 100vh;
+}
+
+.login_page .logo_section {
+  background-color: #df4600;
+}
+
+.login_page .logo_section {
+  background-color: #df4600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .login_page .letter_logo {
+  font-size: 9rem;
+  width: 10rem;
+  height: 10rem;
+  line-height: 9rem;
+} */
+
+.login_page .name_logo {
+  /* font-size: 4rem; */
+  color: #fff;
+  order: 1;
+}
+
+/* .login_page .line_logo {
+  width: 8rem;
+  height: 0.4rem;
+  background: #fff;
+  margin-top: 3rem;
+} */
+
+.login_page .line_logo {
+  width: 0.3rem;
+  height: 3rem;
+  background: #fff;
+  margin-right: 1rem;
+}
+
+.login_page .login_section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .login_title{
+    padd
+} */
+
+.login_page .login_title {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+  color: #f76928;
+  border-bottom: 1px solid #eee;
+}
+
+.login_form {
+  padding: 3rem 0;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 90%;
+}
+
+.login_form .btn-submit {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.5rem;
+}
+
+.login_form .input_label {
+  padding: 1rem 0;
+  position: relative;
+}
+.login_form .checkbox_inputs {
+  width: 100%;
+}
+
+.login_form .checkbox_inputs label {
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+svg.password_eye {
+  position: absolute;
+  right: 2%;
+  bottom: 23px;
+  color: #df4600;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .login_page .letter_logo {
+    font-size: 9rem;
+    width: 10rem;
+    height: 10rem;
+    line-height: 9rem;
+  }
+  .login_page .name_logo {
+    font-size: 4rem;
+    color: #fff;
+    order: 0;
+  }
+  .login_page .line_logo {
+    width: 8rem;
+    height: 0.4rem;
+    background: #fff;
+    margin-top: 3rem;
+    margin-right: 0;
+  }
+  /* .login_page .line_logo {
+    width: 0.3rem;
+    height: 3rem;
+    background: #fff;
+  } */
+}
+
+@media (max-width: 768px) {
+  .login_page {
+    flex-direction: column;
+  }
+  .login_page > div {
+    height: 100%;
+  }
+  .login_page .logo_section {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+  }
+  .login_page .login_title {
+    padding: 2rem;
+    font-size: 3rem;
+  }
+  .login_form {
+    padding: 1rem 0;
+  }
+}

@@ -1,0 +1,74 @@
+.barChart_card,
+.pieChart_card {
+  width: 100%;
+}
+
+.prev_next svg {
+  color: #df4600;
+  border: 1px solid #df4600;
+  padding: 0.5em;
+  margin: 0.5em 0.1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.prev_next svg:hover {
+  color: #fff;
+  background-color: #df4600;
+}
+
+.prev_next {
+  flex-grow: 2;
+  margin-right: 2rem;
+  text-align: end;
+}
+
+.barChart_card .btn,
+.pieChart_card .btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.barChart_card .btn span,
+.pieChart_card .btn span {
+  margin: 0 !important;
+}
+
+.chart_variables {
+  display: flex;
+  align-items: center;
+  /* flex-grow: 1; */
+  justify-content: flex-end;
+}
+
+.pies {
+  display: flex;
+  padding-top: 20px;
+}
+
+.pies h3 {
+  text-align: center;
+}
+
+.pies > div {
+  width: 50%;
+}
+
+.pieChart_card .prev_next {
+  flex-grow: 1;
+}
+
+.pieChart_card .btns {
+  align-items: center;
+}
+
+.pieChart_date {
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.pieChart_card canvas {
+  padding: 10%;
+}

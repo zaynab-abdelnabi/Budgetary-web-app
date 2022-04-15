@@ -1,0 +1,26 @@
+.card_head {
+  border-bottom: 1px solid #f7692850;
+  padding: 1rem 1.5rem 0 1rem;
+  min-height: 35px;
+}
+
+.categories .card_titles {
+  /* padding: 0.25rem; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_title {
+  margin: 0;
+  display: inline;
+  padding: 0.75rem 1rem;
+  color: #51525450;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.card_title.active {
+  border-bottom: 3px solid #f76928;
+  color: #f76928;
+  font-weight: bold;
+}

@@ -1,0 +1,17 @@
+.transaction_content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+/* .transaction_content > div {
+  width: 50%;
+} */
+
+@media (max-width: 992px) {
+  .transaction_content > div {
+    width: 100%;
+  }
+  .transaction_content {
+    flex-direction: column-reverse;
+  }
+}

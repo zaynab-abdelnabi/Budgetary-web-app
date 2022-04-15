@@ -1,0 +1,92 @@
+.profitGoal {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2rem;
+  padding-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.profitGoal_icons {
+  display: flex;
+  align-items: center;
+}
+
+.profitGoal_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.percentageBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.backgroundBar {
+  width: 100%;
+  height: 1rem;
+  border-radius: 10px;
+  background-color: #ccc;
+  margin-right: 1rem;
+}
+.upBar {
+  height: 1rem;
+  border-radius: 10px;
+  background-color: #f76928;
+}
+.percentage {
+  font-size: 1.5rem;
+}
+
+.profit_goal_form {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.editprofitGoal_icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profit_goal_card {
+  min-width: 100% !important;
+}
+
+.profitGoal_amount {
+  font-size: 2rem;
+}
+
+.Form_pr_edit {
+  display: contents;
+  justify-content: space-around;
+}
+
+.profit_goal_form .form {
+  flex-direction: row;
+}
+
+.profit_goal_edit {
+  width: 450px;
+}
+
+@media (min-width: 992px) and (max-width: 1112px) {
+  .profit_goal_form .input_label {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .profit_goal_edit {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .profit_goal_form .form {
+    flex-direction: column;
+    width: 100%;
+  }
+}

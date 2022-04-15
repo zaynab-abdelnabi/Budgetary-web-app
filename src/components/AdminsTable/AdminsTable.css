@@ -1,0 +1,120 @@
+.container {
+  margin-top: 50px;
+  background-color: #f3f3f3;
+  max-width: 785px;
+  border-radius: 20px;
+  /* margin-left: 200px; */
+  display: inline;
+
+}
+
+.admin-add {
+  display: flex;
+  align-items: center;
+}
+
+.Text-admins {
+  color: #f2693f;
+  font-weight: 400;
+  /* margin-left: 200px; */
+}
+
+.add-addmin-button {
+  /* margin-left: 946px; */
+  color: #fff;
+  text-decoration: none;
+  background-color: #f2693f;
+  padding: 10px;
+}
+
+.Table-header {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: #f2693f 1px solid;
+  padding: 10px;
+}
+
+.Table-header input,
+.Table-header h2 {
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  color: #f2693f;
+  font-weight: 400;
+  padding-bottom: 9px;
+  border-bottom: #f2693f 3px solid;
+  position: relative;
+  margin-bottom: -10px;
+
+
+}
+
+.Table-row,
+.name-email {
+  display: flex;
+  align-items: center;
+}
+
+.Table-row {
+  border-bottom: #a2a3a3 1px solid;
+  padding: 10px;
+}
+
+.Table-row:hover {
+  background-color: #fff;
+}
+
+.name-email {
+  margin-left: 50px;
+}
+
+.Table-item-actions {
+  margin-left: 340px;
+}
+
+/* .admin-name {
+  font-size: 25px;
+  padding-bottom: 10px;
+} */
+
+@media only screen and (max-width: 768px) {
+  .add-addmin-button {
+    margin-left: 160px;
+  }
+
+  .name-email {
+    margin-left: 0;
+  }
+
+  .container {
+    max-width: 25rem;
+    margin-left: 1rem;
+  }
+  .Table-item-actions {
+    margin-left: 80px;
+  }
+/* 
+  .Text-admins {
+    /* margin-left: 35px; */
+  
+
+  .Table-header input {
+    margin-left: 100px;
+    width: 117px;
+  }
+
+  .Table-header h2 {
+    margin-left: 30px;
+  }
+
+  .Table-row {
+    padding: 7px;
+  }
+
+  .admin-name ,.category-name{
+    font-size: 15px;
+  }
+  .admin-email,.type {
+    font-size: 12px;
+  }
+}
