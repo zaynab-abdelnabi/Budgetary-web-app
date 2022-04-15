@@ -4,7 +4,10 @@ Budgetary is an application that manages the finances of a company in order to m
 
 Features:
 - List, create, edit and delete transactions either income or expense
-- Records and charts of the transaction weekly, monthly and yearly
+- 2 types of transaction: fixed and recurring transaction with ability to edit future transactions in recurring
+- List, create, edit and delete categories of transactions and link each transaction to category
+- Login as an admin to list, create, edit and delete other admins
+- Show and edit profit goal of the company with records and charts
 
 ## Available Scripts
 
