@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { Home, Login, Admins, Transactions, Categories } from "./pages";
 import "./App.css";
-import ProtectedRoutes from "./pages/ProtectedRoutes";
+// import ProtectedRoutes from "./pages/ProtectedRoutes";
 import NotFound from "./pages/Login/NotFound";
 export function Page(props) {
   return (

@@ -1,4 +1,4 @@
-import React, { Component, useState, useHistory } from "react";
+import React, { useState } from "react";
 import "../../components/Navbar/Navbar";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -6,7 +6,8 @@ import "./Login.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "animate.css";
-import { Link, useNavigate } from "react-router-dom";
+ 
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import { useRouter } from 'next/router';
 
@@ -33,7 +34,7 @@ function Login(props) {
     };
     // console.log("logininfo ", loginINfo);
     axios
-      .post(`http://127.0.0.1:8000/api/login`, loginINfo)
+      .post(`https://financial-app-api.herokuapp.com/api/login`, loginINfo)
       .then((response) => {
         console.log("response token ", response);
         if (response.data.status === 500 || response.data.status === 400) {

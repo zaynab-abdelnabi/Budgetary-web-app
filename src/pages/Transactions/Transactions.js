@@ -9,6 +9,7 @@ import { TransactionTable } from "../../components/TransactionTable/TransactionT
 import AddTransaction from "../../components/Forms/AddTransaction";
 import EditTransaction from "../../components/Forms/EditTransaction";
 import "./Transactions.css";
+ 
 import LoadingComponent from "../../components/Loading/Loading";
 
 export class Transactions extends Component {
@@ -43,7 +44,7 @@ export class Transactions extends Component {
     if (type === "all") {
       try {
         axios
-          .get(`http://127.0.0.1:8000/api/transactions/list?page=${pageNumber}`)
+          .get(`https://financial-app-api.herokuapp.com/api/transactions/list?page=${pageNumber}`)
           .then((res) => {
             this.setState({ transactions: res.data.data, loading: false });
             // console.log(res.data.data);
@@ -56,7 +57,7 @@ export class Transactions extends Component {
       try {
         axios
           .get(
-            `http://127.0.0.1:8000/api/transactions/list/${type}?page=${pageNumber}`
+            `https://financial-app-api.herokuapp.com/api/transactions/list/${type}?page=${pageNumber}`
           )
           .then((res) => {
             this.setState({ transactions: res.data.data, loading: false });
@@ -72,7 +73,7 @@ export class Transactions extends Component {
   getIncome = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/incomes`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/incomes`)
         .then((res) => {
           this.setState({ incomeAmount: res.data.data });
         })
@@ -85,7 +86,7 @@ export class Transactions extends Component {
   getExpense = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/expenses`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/expenses`)
         .then((res) => {
           this.setState({ expenseAmount: res.data.data });
         })
@@ -98,7 +99,7 @@ export class Transactions extends Component {
   getById = async (id) => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/${id}`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/${id}`)
         .then((res) => {
           this.setState({
             transaction: res.data.data,
@@ -117,7 +118,7 @@ export class Transactions extends Component {
     // console.log(data);
     if (data.date) {
       await axios
-        .post(`http://127.0.0.1:8000/api/transactions/create/fixed`, data)
+        .post(`https://financial-app-api.herokuapp.com/api/transactions/create/fixed`, data)
         .then((res) => {
           if (res.data.status === 401) {
             Swal.fire({
@@ -163,7 +164,7 @@ export class Transactions extends Component {
         .catch((err) => console.log(err.message));
     } else {
       await axios
-        .post(`http://127.0.0.1:8000/api/transactions/create/recurring`, data)
+        .post(`https://financial-app-api.herokuapp.com/api/transactions/create/recurring`, data)
         .then((res) => {
           if (res.data.status === 401) {
             Swal.fire({
@@ -229,7 +230,7 @@ export class Transactions extends Component {
 
   editFixed = (id, data) => {
     axios
-      .put(`http://127.0.0.1:8000/api/transactions/edit/fixed/${id}`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/transactions/edit/fixed/${id}`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
@@ -280,7 +281,7 @@ export class Transactions extends Component {
 
   editFutureRecurring = (id, data) => {
     axios
-      .put(`http://127.0.0.1:8000/api/transactions/edit/recurring/${id}`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/transactions/edit/recurring/${id}`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
@@ -336,7 +337,7 @@ export class Transactions extends Component {
   editAllRecurring = (id, data) => {
     axios
       .put(
-        `http://127.0.0.1:8000/api/transactions/edit/allrecurring/${id}`,
+        `https://financial-app-api.herokuapp.com/api/transactions/edit/allrecurring/${id}`,
         data
       )
       .then((res) => {
@@ -394,7 +395,7 @@ export class Transactions extends Component {
   deleteById = (id, type) => {
     if (type === "fixed") {
       axios
-        .delete(`http://127.0.0.1:8000/api/transactions/${id}`)
+        .delete(`https://financial-app-api.herokuapp.com/api/transactions/${id}`)
         .then((res) => {
           Swal.fire({
             title: `${res.data.message}`,
@@ -424,7 +425,7 @@ export class Transactions extends Component {
         .catch((err) => console.log(err));
     } else if (type === "recurring") {
       axios
-        .delete(`http://127.0.0.1:8000/api/recurrings/${id}`)
+        .delete(`https://financial-app-api.herokuapp.com/api/recurrings/${id}`)
         .then((res) => {
           Swal.fire({
             title: `${res.data.message}`,
@@ -458,7 +459,7 @@ export class Transactions extends Component {
   getCategories = async () => {
     try {
       axios
-        .get("http://127.0.0.1:8000/api/categories")
+        .get("https://financial-app-api.herokuapp.com/api/categories")
         .then((res) => {
           this.setState({
             categories: res.data.data,
@@ -475,7 +476,7 @@ export class Transactions extends Component {
   getCategoriesEdit = async (type) => {
     try {
       axios
-        .get("http://127.0.0.1:8000/api/categories")
+        .get("https://financial-app-api.herokuapp.com/api/categories")
         .then((res) => {
           this.setState({
             categories: res.data.data,

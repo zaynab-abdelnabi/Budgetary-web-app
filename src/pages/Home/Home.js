@@ -8,6 +8,7 @@ import {
   ProfitGoal,
 } from "../../components/ProfitGoals/ProfitGoals";
 import LoadingComponent from "../../components/Loading/Loading";
+ 
 
 class Home extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Home extends Component {
   getAllData = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/ProfitGoals`)
+        .get(`https://financial-app-api.herokuapp.com/api/ProfitGoals`)
         .then((res) => {
           this.setState({
             ProfitGoals: res.data.data,
@@ -63,7 +64,7 @@ class Home extends Component {
   getById = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/ProfitGoals/1`)
+        .get(`https://financial-app-api.herokuapp.com/api/ProfitGoals/1`)
         .then((res) => {
           this.setState({
             ProfitGoal: res.data.data,
@@ -92,7 +93,7 @@ class Home extends Component {
     this.setState({ range: range, value: value });
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/${value}?range=${range}`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/${value}?range=${range}`)
         .then((res) => {
           // console.log(res.data.data);
           this.setState({ records: res.data.data });
@@ -109,7 +110,7 @@ class Home extends Component {
     try {
       await axios
         .get(
-          `http://127.0.0.1:8000/api/transactions/records/category/${value}?range=${range}`
+          `https://financial-app-api.herokuapp.com/api/transactions/records/category/${value}?range=${range}`
         )
         .then((res) => {
           this.setState({ categoriesRecords: res.data });
@@ -123,7 +124,7 @@ class Home extends Component {
   getIncome = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/incomes`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/incomes`)
         .then((res) => {
           this.setState({ incomeAmount: res.data.data });
         })
@@ -136,7 +137,7 @@ class Home extends Component {
   getExpense = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/transactions/expenses`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/expenses`)
         .then((res) => {
           this.setState({ expenseAmount: res.data.data });
         })
@@ -149,7 +150,7 @@ class Home extends Component {
   getLatestTransactions = async () => {
     try {
       axios
-        .get(`http://127.0.0.1:8000/api/transactions/latest-transactions`)
+        .get(`https://financial-app-api.herokuapp.com/api/transactions/latest-transactions`)
         .then((res) => {
           this.setState({ latestTransactions: res.data.data.data });
           // console.log(res.data.data.data);

@@ -4,6 +4,7 @@ import { AddButton } from "../../components/Buttons/Button";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "animate.css";
+ 
 import LoadingComponent from "../../components/Loading/Loading";
 
 class Categories extends Component {
@@ -28,7 +29,7 @@ class Categories extends Component {
   getAllData = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/categories`)
+        .get(`https://financial-app-api.herokuapp.com/api/categories`)
         .then((res) => {
           this.setState({
             Categories: res.data.data,
@@ -47,7 +48,7 @@ class Categories extends Component {
   getById = async (id) => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/categories/${id}`)
+        .get(`https://financial-app-api.herokuapp.com/api/categories/${id}`)
         .then((res) => {
           this.setState({
             Category: res.data.data,
@@ -66,7 +67,7 @@ class Categories extends Component {
   addNew = async (data) => {
     // console.log(data);
     await axios
-      .post(`http://127.0.0.1:8000/api/categories`, data)
+      .post(`https://financial-app-api.herokuapp.com/api/categories`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
@@ -109,7 +110,7 @@ class Categories extends Component {
   edit = async (data, id) => {
     // console.log("data put ", data);
     await axios
-      .put(`http://127.0.0.1:8000/api/categories/edit/${id}`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/categories/edit/${id}`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
@@ -150,7 +151,7 @@ class Categories extends Component {
   //delete categories
   delete = async (id) => {
     await axios
-      .delete(`http://127.0.0.1:8000/api/categories/${id}`)
+      .delete(`https://financial-app-api.herokuapp.com/api/categories/${id}`)
       .then((res) => {
         Swal.fire({
           text: "Are you sure you want to delete this transaction?",

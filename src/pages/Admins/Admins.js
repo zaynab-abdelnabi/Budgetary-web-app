@@ -29,7 +29,7 @@ export default class Admins extends Component {
   getAllData = async () => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/admins`)
+        .get(`https://financial-app-api.herokuapp.com/api/admins`)
         .then((res) => {
           this.setState({
             admins: res.data.data,
@@ -46,7 +46,7 @@ export default class Admins extends Component {
   addNew = async (data) => {
     try {
       await axios
-        .post(`http://127.0.0.1:8000/api/admins`, data)
+        .post(`https://financial-app-api.herokuapp.com/api/admins`, data)
         .then((res) => {
           if (res.data.status === 401) {
             Swal.fire({
@@ -92,7 +92,7 @@ export default class Admins extends Component {
   deleteById = async (id) => {
     try {
       await axios
-        .delete(`http://127.0.0.1:8000/api/admins/${id}`)
+        .delete(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
         .then((res) => {
           Swal.fire({
             title: `${res.data.message}`,
@@ -120,7 +120,7 @@ export default class Admins extends Component {
   getById = async (id) => {
     try {
       await axios
-        .get(`http://127.0.0.1:8000/api/admins/${id}`)
+        .get(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
         .then((res) => {
           this.setState({
             admin: res.data.data,
@@ -138,7 +138,7 @@ export default class Admins extends Component {
   editById = async (data) => {
     // console.log("data put ", data);
     await axios
-      .put(`http://127.0.0.1:8000/api/admins/edit/${data.id}`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/admins/edit/${data.id}`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
@@ -179,7 +179,7 @@ export default class Admins extends Component {
   editPassword = async (data) => {
     // console.log("data put ", data.id);
     await axios
-      .put(`http://127.0.0.1:8000/api/admins/password`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/admins/password`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({

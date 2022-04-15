@@ -62,7 +62,7 @@ export function ProfitGoalForm(props) {
     };
     console.log(data);
     axios
-      .put(`http://127.0.0.1:8000/api/ProfitGoals/edit/1`, data)
+      .put(`https://financial-app-api.herokuapp.com/api/ProfitGoals/edit/1`, data)
       .then((res) => {
         if (res.data.status === 401) {
           Swal.fire({
