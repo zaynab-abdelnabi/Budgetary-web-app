@@ -1,30 +1,28 @@
 import React, { Component } from "react";
-import { CategoriesTable } from "../../components/CategoryTable/CategoryTable";
-import { AddButton } from "../../components/Buttons/Button";
 import axios from "axios";
-import Swal from "sweetalert2";
-import "animate.css";
- 
+import { CategoriesTable } from "../../components/CategoryTable/CategoryTable";
+import * as alert from "../../components/Alerts/Alert";
 import LoadingComponent from "../../components/Loading/Loading";
 
 class Categories extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailsView: false,
-      formView: false,
+      addView: false,
       Categories: [],
       Category: {},
       loading: true,
-      edit_category_id: null,
     };
   }
 
   componentDidMount() {
     this.getAllData();
-    // this.getById();
   }
-  //get all categories
+
+  /**
+   * get all categories
+   * add them to "categories" state
+   */
 
   getAllData = async () => {
     try {
@@ -35,7 +33,6 @@ class Categories extends Component {
             Categories: res.data.data,
             loading: false,
           });
-          // console.log(this.state.Categories);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -43,7 +40,11 @@ class Categories extends Component {
     }
   };
 
-  // get by id category
+  /**
+   * get category by id to edit
+   *
+   * @param {*} id
+   */
 
   getById = async (id) => {
     try {
@@ -52,52 +53,29 @@ class Categories extends Component {
         .then((res) => {
           this.setState({
             Category: res.data.data,
-            detailsView: false,
-            formView: false,
           });
-          // console.log(this.state.Category);
         })
         .catch((err) => console.log(err));
     } catch (e) {
       console.log(e);
     }
   };
-  // add new categories
+
+  /**
+   * add new category
+   *
+   * @param {name, type} data
+   * exit add view
+   */
 
   addNew = async (data) => {
-    // console.log(data);
     await axios
       .post(`https://financial-app-api.herokuapp.com/api/categories`, data)
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({ loading: true, formView: false });
           this.getAllData();
         }
@@ -105,42 +83,24 @@ class Categories extends Component {
       .catch((err) => console.log(err.message));
   };
 
-  //edit categories
+  /**
+   * edit category
+   *
+   * @param {name, type} data
+   * @param {*} id
+   */
 
   edit = async (data, id) => {
-    // console.log("data put ", data);
     await axios
-      .put(`https://financial-app-api.herokuapp.com/api/categories/edit/${id}`, data)
+      .put(
+        `https://financial-app-api.herokuapp.com/api/categories/edit/${id}`,
+        data
+      )
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({ loading: true });
           this.getAllData();
         }
@@ -148,45 +108,27 @@ class Categories extends Component {
       .catch((err) => console.log(err.message));
   };
 
-  //delete categories
+  /**
+   * delete category by id
+   *
+   * @param {*} id
+   */
+
   delete = async (id) => {
-    await axios
-      .delete(`https://financial-app-api.herokuapp.com/api/categories/${id}`)
-      .then((res) => {
-        Swal.fire({
-          text: "Are you sure you want to delete this transaction?",
-          showClass: {
-            popup: "animate__animated animate__zoomIn",
-          },
-          hideClass: {
-            popup: "animate__animated animate__zoomOut",
-          },
-          showConfirmButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Yes, delete it",
-          confirmButtonColor: "#f76928",
-          cancelButtonColor: "#555",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+    alert.confirmDelete().then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `https://financial-app-api.herokuapp.com/api/categories/${id}`
+          )
+          .then((res) => {
+            alert.success(res.data.message);
             this.setState({ loading: true });
             this.getAllData();
-          }
-        });
-      })
-      .catch((err) => console.log(err.message));
+          })
+          .catch((err) => console.log(err.message));
+      }
+    });
   };
 
   render() {
@@ -197,14 +139,10 @@ class Categories extends Component {
         <div>
           <div className="page-heading">
             <h1>Categories</h1>
-            <AddButton
-              title="Add Category"
-              class="btn-submit add_category"
-              onClick={() => this.setState({ formView: true })}
-            />
           </div>
           <CategoriesTable
             data={this.state.Categories}
+            addView={this.state.addView}
             showDetails={(id) => this.getById(id)}
             onSubmitHandler={(data) => this.addNew(data)}
             onEdit={(data, id) => this.edit(data, id)}

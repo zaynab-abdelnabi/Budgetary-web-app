@@ -7,7 +7,7 @@ import { CategoryItem } from "../../components/Tables/Tables";
 import "./CategoryTable.css";
 
 export function CategoriesTable(props) {
-  const [addCategory, setAddCategory] = useState(false);
+  const [addCategory, setAddCategory] = useState(props.addView);
   const [editItem, setEditItem] = useState(0);
   const [categories, setCategories] = useState(props.data);
 
@@ -53,7 +53,7 @@ export function CategoriesTable(props) {
             return (
               <CategoryItem
                 key={category.id}
-                data={category} //get all
+                data={category} 
                 onEdit={(id) => {
                   setAddCategory(false);
                   setEditItem(id);

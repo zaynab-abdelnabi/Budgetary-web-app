@@ -60,10 +60,6 @@
   color: #f2693f;
 }
 
-.add_category {
-  display: none;
-}
-
 .categories span ,.admin-content span{
   margin-left: 0 !important;
 }
@@ -72,14 +68,5 @@
   .table_item .btn span,
   .categories .btn span {
     display: none;
-  }
-}
-
-@media (max-width: 575px) {
-  .btn-category {
-    display: none;
-  }
-  .add_category {
-    display: block;
   }
 }
