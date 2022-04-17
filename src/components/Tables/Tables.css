@@ -46,6 +46,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  /* max-width: 175px; */
 }
 
 .admin-name {
@@ -74,6 +75,22 @@
   max-height: 1.5rem;
 }
 
+.admin-email,
+.admin-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical; */
+  -webkit-line-clamp: 1;
+  line-height: 1rem;
+  max-height: 1rem;
+  /* text-overflow: ellipsis;
+  overflow: hidden; */
+  max-width: 30vw;
+  /* height: 2em;
+  white-space: nowrap; */
+}
+
 @media (max-width: 575px) {
   .price_date {
     align-items: flex-end;
@@ -85,4 +102,14 @@
   .price_date {
     min-width: 110px;
   }
+  .admin_info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 30vw;
+    height: 2em;
+    white-space: nowrap;
+  }
+  /* .admin-email { */
+  /* max-width: 175px;
+  } */
 }

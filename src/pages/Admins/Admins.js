@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import Swal from "sweetalert2";
-import "animate.css";
-import { AddButton } from "../../components/Buttons/Button";
-import EditAdmin from "../../components/Forms/EditAdmin";
-import { AdminsTable } from "../../components/AdminsTable/AdminsTable";
-import AddAdmin from "../../components/Forms/AddAdmin";
-import "./Admins.css";
 import axios from "axios";
 import LoadingComponent from "../../components/Loading/Loading";
+import { AddButton } from "../../components/Buttons/Button";
+import { AdminsTable } from "../../components/AdminsTable/AdminsTable";
+import AddAdmin from "../../components/Forms/AddAdmin";
+import EditAdmin from "../../components/Forms/EditAdmin";
+import * as alert from "../../components/Alerts/Alert";
+import "./Admins.css";
 
 export default class Admins extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export default class Admins extends Component {
       addView: false,
       admins: undefined,
       admin: {},
-      loading: false,
+      loading: true,
     };
   }
 
@@ -25,7 +24,11 @@ export default class Admins extends Component {
     this.getAllData();
   }
 
-  // Get all admins
+  /**
+   * Get all admins
+   * store data in "admins" state
+   */
+
   getAllData = async () => {
     try {
       await axios
@@ -42,45 +45,25 @@ export default class Admins extends Component {
     }
   };
 
-  // Adding new admin
+  /**
+   * Adding new admin
+   *
+   * @param {name, email, password} data
+   * close add view
+   */
+
   addNew = async (data) => {
     try {
       await axios
         .post(`https://financial-app-api.herokuapp.com/api/admins`, data)
         .then((res) => {
           if (res.data.status === 401) {
-            Swal.fire({
-              icon: "error",
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.error(res.data.message);
           } else {
-            Swal.fire({
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.success(res.data.message);
             this.setState({ loading: true, addView: false });
             this.getAllData();
           }
-          // console.log(res);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -88,35 +71,14 @@ export default class Admins extends Component {
     }
   };
 
-  // Delete admin by id
-  deleteById = async (id) => {
-    try {
-      await axios
-        .delete(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
-        .then((res) => {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
-          this.setState({ loading: true, editView: false, addView: false });
-          this.getAllData();
-        })
-        .catch((err) => console.log(err));
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  /**
+   * get admin by id
+   *
+   * @param {*} id
+   * add data to "admin" state
+   * open edit view
+   */
 
-  //get admin by id
   getById = async (id) => {
     try {
       await axios
@@ -134,41 +96,22 @@ export default class Admins extends Component {
     }
   };
 
-  //Edit admin by id
+  /**
+   * Edit admin by id
+   * @param {name, email} data
+   */
+
   editById = async (data) => {
-    // console.log("data put ", data);
     await axios
-      .put(`https://financial-app-api.herokuapp.com/api/admins/edit/${data.id}`, data)
+      .put(
+        `https://financial-app-api.herokuapp.com/api/admins/edit/${data.id}`,
+        data
+      )
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({ loading: true, editView: false, addView: false });
           this.getAllData();
         }
@@ -176,45 +119,45 @@ export default class Admins extends Component {
       .catch((err) => console.log(err.message));
   };
 
+  /**
+   *
+   * @param {name, email, password, confirmPassword} data
+   */
+
   editPassword = async (data) => {
-    // console.log("data put ", data.id);
     await axios
       .put(`https://financial-app-api.herokuapp.com/api/admins/password`, data)
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({ loading: true, editView: false, addView: false });
           this.getAllData();
         }
       })
       .catch((err) => console.log(err.message));
+  };
+
+  /**
+   * Delete admin by id
+   *
+   * @param {*} id
+   */
+
+  deleteById = async (id) => {
+    try {
+      await axios
+        .delete(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
+        .then((res) => {
+          alert.success(res.data.message);
+          this.setState({ loading: true, editView: false, addView: false });
+          this.getAllData();
+        })
+        .catch((err) => console.log(err));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {

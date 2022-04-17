@@ -1,13 +1,7 @@
-/* form.form{
-    display: inline-flex;
-} */
 .admin-add {
   justify-content: space-between;
 }
-/* .main_section {
-    display: flex;
-    justify-content: end;
-} */
+
 a .add-addmin-button {
   width: 125px;
   height: 22px;
@@ -15,7 +9,6 @@ a .add-addmin-button {
 
 .form_add {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 }
 
@@ -26,9 +19,12 @@ a .add-addmin-button {
   width: 100%;
 }
 
+.admin-content .card:first-child .card_head {
+  padding-top: 0;
+}
+
 .admin-content > div {
   min-width: 50%;
-  /* min-width: 500px; */
 }
 
 @media (max-width: 992px) {

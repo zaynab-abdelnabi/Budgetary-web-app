@@ -4,7 +4,7 @@ import "./Button.css";
 
 export default function Submit() {
   return (
-    <div style={{ margin: "0 auto" }}>
+    <div style={{ margin: "10px auto" }}>
       <button type="Submit" className="btn btn-submit">
         Submit
       </button>

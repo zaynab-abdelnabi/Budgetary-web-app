@@ -82,3 +82,10 @@
     padding-bottom: 1rem;
   }
 }
+
+@media (max-width: 575px) {
+  .main_section {
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+}

@@ -113,9 +113,9 @@ export function AdminItem(props) {
         <div className="admin_avatar">
           <HiOutlineUserCircle size={"3rem"} style={{ marginRight: "20px" }} />
         </div>
-        <div className="adexport function AdminItem(props) {return (min_info">
-          <p className="admin-name">{props.name}</p>
-          <p className="admin-email">{props.email}</p>
+        <div className="admin_info">
+          <div className="admin-name">{props.name}</div>
+          <div className="admin-email">{props.email}</div>
         </div>
       </div>
 
