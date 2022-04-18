@@ -8,7 +8,7 @@ export const success = (message) => {
     confirmButtonText: "Ok",
     confirmButtonColor: "#f76928",
     showClass: {
-      popup: "animate__animated animate__zoomIn",
+      popup: "animate__animated animate__zoomIn", 
     },
     hideClass: {
       popup: "animate__animated animate__zoomOut",
