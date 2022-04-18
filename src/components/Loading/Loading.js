@@ -14,11 +14,9 @@ function LoadingComponent() {
     >
       <Loading
         type="gradient"
-        // textColor="#f76928"
         style={{
           color: "#f76928",
         }}
-        // css={{ color: "#f76928" }}
         loadingCss={{
           $$loadingSize: "6rem",
           $$loadingColor: "#f76928",

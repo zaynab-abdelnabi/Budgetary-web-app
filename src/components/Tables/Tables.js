@@ -3,6 +3,9 @@ import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { Buttons, Button } from "../Buttons/Button";
 import { FiCalendar } from "react-icons/fi";
+import { AnimationOnScroll } from "react-animation-on-scroll";
+import "animate.css";
+
 import "./Tables.css";
 
 function nFormatter(num) {
@@ -40,29 +43,31 @@ function dateFormatter(date) {
 export function LatestTransactionItem(props) {
   const { title, amount, date, category, currency } = props.data;
   return (
-    <div className="table_item">
-      <div className="table_item_details">
-        <div className="title_category">
-          <h4 className="transaction_title">{title}</h4>
-          <p className="transaction_category">{category.name}</p>
-        </div>
-        <div className="price_date">
-          <p
-            className="transaction_price"
-            style={{
-              color: `${category.type === "expense" ? "red" : "green"}`,
-            }}
-          >
-            {category.type === "expense" ? "- " : "+ "}
-            {nFormatter(amount)} {currency}
-          </p>
-          <p className="transaction_date">
-            <FiCalendar style={{ marginRight: ".5rem" }} />
-            <i>{dateFormatter(date)}</i>
-          </p>
+    <AnimationOnScroll animateIn="animate__slideInUp" duration="1.5">
+      <div className="table_item">
+        <div className="table_item_details">
+          <div className="title_category">
+            <h4 className="transaction_title">{title}</h4>
+            <p className="transaction_category">{category.name}</p>
+          </div>
+          <div className="price_date">
+            <p
+              className="transaction_price"
+              style={{
+                color: `${category.type === "expense" ? "red" : "green"}`,
+              }}
+            >
+              {category.type === "expense" ? "- " : "+ "}
+              {nFormatter(amount)} {currency}
+            </p>
+            <p className="transaction_date">
+              <FiCalendar style={{ marginRight: ".5rem" }} />
+              <i>{dateFormatter(date)}</i>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </AnimationOnScroll>
   );
 }
 
@@ -71,7 +76,8 @@ export function TransactionItem(props) {
 
   return (
     <div
-      className="table_item"
+      className="table_item animate__animated animate__slideInUp"
+      style={{ animationDuration: "1.5s" }}
       onClick={() => {
         props.showItem();
         window.scroll({
@@ -108,7 +114,10 @@ export function TransactionItem(props) {
 
 export function AdminItem(props) {
   return (
-    <div className="table_item">
+    <div
+      className="table_item animate__animated animate__slideInUp"
+      style={{ animationDuration: "1.5s" }}
+    >
       <div className="table_item_details admin_item">
         <div className="admin_avatar">
           <HiOutlineUserCircle size={"3rem"} style={{ marginRight: "20px" }} />
@@ -148,7 +157,10 @@ export function CategoryItem(props) {
   const { id, name, type } = props.data;
   return (
     <>
-      <div className="table_item">
+      <div
+        className="table_item animate__animated animate__slideInUp"
+        style={{ animationDuration: "1.5s" }}
+      >
         <div className="table_item_details category_item">
           <div className="category-item">
             <p className="category-name">

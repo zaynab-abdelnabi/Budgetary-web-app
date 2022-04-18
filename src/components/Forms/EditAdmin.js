@@ -10,7 +10,7 @@ export default function EditAdmin(props) {
 
   return (
     <>
-      <Card class="table">
+      <Card class="table animate__slideInRight">
         <AiOutlineClose
           className="AiOutlineClose"
           onClick={() => props.close()}

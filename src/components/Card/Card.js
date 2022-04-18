@@ -1,8 +1,16 @@
 import React from "react";
+import "animate.css";
 import "./Card.css";
 
 export function Card(props) {
-  return <div className={`card ${props.class}`}>{props.children}</div>;
+  return (
+    <div
+      className={`card ${props.class} animate__animated`}
+      style={{ animationDuration: "1.5s" }}
+    >
+      {props.children}
+    </div>
+  );
 }
 
 export function AmountCard(props) {
@@ -26,7 +34,10 @@ export function Cards(props) {
   };
 
   return (
-    <div className="cards">
+    <div
+      className="cards animate__animated animate__zoomIn"
+      style={{ animationDuration: "1.5s" }}
+    >
       <AmountCard
         title="Income"
         amount={`+ ${Number(props.income).toLocaleString()}`}

@@ -72,3 +72,15 @@
 .pieChart_card canvas {
   padding: 10%;
 }
+
+@media (max-width: 575px) {
+  .pieChart_card {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .barChart_card {
+    display: none;
+  }
+}

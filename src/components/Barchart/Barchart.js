@@ -79,7 +79,7 @@ export function Barchart(props) {
   };
 
   return (
-    <Card class="barChart_card">
+    <Card class="barChart_card animate__slideInUp">
       <div className="btns">
         <div className="prev_next">
           <MdOutlineArrowBackIos onClick={() => props.changeRange(-1)} />
@@ -156,7 +156,7 @@ export function PieChart(props) {
 
 export function PieCharts(props) {
   return (
-    <Card class="pieChart_card">
+    <Card class="pieChart_card animate__slideInUp">
       <div className="btns">
         <div className="pieChart_date">
           <FiCalendar style={{ marginRight: ".5rem" }} />

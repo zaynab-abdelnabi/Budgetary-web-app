@@ -28,7 +28,7 @@ export function ProfitGoal(props) {
   // console.log("amountId",obj1);
 
   return (
-    <Card class="profit_goal_card">
+    <Card class="profit_goal_card animate__slideInUp">
       <div className="profitGoal_heading">
         <div className="profitGoal_icons">
           <h3>Profit Goal</h3>
@@ -110,7 +110,7 @@ export function ProfitGoalForm(props) {
   //   console.log("new ",ProfitGoalEditForm);
   // };
   return (
-    <Card class="profit_goal_edit">
+    <Card class="profit_goal_edit animate__slideInDown">
       <div className="profit_goal">
         <div className="editprofitGoal_icons">
           <h3>Edit profit Goal</h3>

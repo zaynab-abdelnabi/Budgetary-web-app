@@ -1,13 +1,12 @@
 import React from "react";
-
 import Swal from "sweetalert2";
 import "animate.css";
-
 import { Card } from "../Card/Card";
 import { FiCalendar } from "react-icons/fi";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import { Buttons, Button } from "../Buttons/Button";
+import * as alert from "../../components/Alerts/Alert";
 import "./TransactionDetails.css";
 
 function dateFormatter(date) {
@@ -60,20 +59,7 @@ export default function TransactionDetails(props) {
         }
       });
     } else {
-      Swal.fire({
-        text: "Are you sure you want to delete this transaction?",
-        showClass: {
-          popup: "animate__animated animate__zoomIn",
-        },
-        hideClass: {
-          popup: "animate__animated animate__zoomOut",
-        },
-        showConfirmButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it",
-        confirmButtonColor: "#f76928",
-        cancelButtonColor: "#555",
-      }).then((result) => {
+      alert.confirmDelete().then((result) => {
         if (result.isConfirmed) {
           props.onDelete(props.data.id, "fixed");
         }
@@ -115,7 +101,7 @@ export default function TransactionDetails(props) {
   };
 
   return (
-    <Card class="transaction_details" id="details">
+    <Card class="transaction_details animate__slideInRight" id="details">
       <AiOutlineClose
         className="AiOutlineClose"
         onClick={() => props.close()}

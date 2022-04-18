@@ -8,7 +8,6 @@ import {
   ProfitGoal,
 } from "../../components/ProfitGoals/ProfitGoals";
 import LoadingComponent from "../../components/Loading/Loading";
- 
 
 class Home extends Component {
   constructor(props) {
@@ -32,7 +31,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.getAllData();
-    // this.getById();
     this.getRecords();
     this.getCategoriesRecords();
     this.getIncome();
@@ -40,7 +38,12 @@ class Home extends Component {
     this.getLatestTransactions();
   }
 
-  //Get profit goal from data base and add it to state "ProfitGoal" and change the loading state
+  /**
+   * Get profit goal from data base
+   * add data to "ProfitGoal"
+   * change "loading" state
+   *
+   */
 
   getAllData = async () => {
     try {
@@ -59,27 +62,14 @@ class Home extends Component {
     }
   };
 
-  //Get the first profit goal from data base and add it to state "ProfitGoal" and change the loading state
-
-  getById = async () => {
-    try {
-      await axios
-        .get(`https://financial-app-api.herokuapp.com/api/ProfitGoals/1`)
-        .then((res) => {
-          this.setState({
-            ProfitGoal: res.data.data,
-            loading: false,
-          });
-          // console.log(res.data.data);
-        })
-        .catch((err) => console.log(err));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   getPercentage = () => {
+    // calculate total amount
     let total = this.state.incomeAmount - this.state.expenseAmount;
+    /** @type {number}
+     * <=0 ----> 0%
+     * >=profitgoal ---->100%
+     * <=profitgoal ----->calc
+     */
     if (total <= 0) {
       return 0;
     } else if (total >= this.state.ProfitGoal.amount) {
@@ -89,13 +79,20 @@ class Home extends Component {
     }
   };
 
+  /**
+   * get Records for chart
+   *
+   * @param {monthly || weekly || yearly} value
+   * @param {..., -3, -2, -1, 0, 1, 2, 3, 4, ...} range
+   */
   getRecords = async (value = "monthly", range = 0) => {
     this.setState({ range: range, value: value });
     try {
       await axios
-        .get(`https://financial-app-api.herokuapp.com/api/transactions/${value}?range=${range}`)
+        .get(
+          `https://financial-app-api.herokuapp.com/api/transactions/${value}?range=${range}`
+        )
         .then((res) => {
-          // console.log(res.data.data);
           this.setState({ records: res.data.data });
         })
         .catch((err) => console.log(err));
@@ -104,9 +101,16 @@ class Home extends Component {
     }
   };
 
+  /**
+   * get records for piechart
+   * 
+   * @param {monthly || daily || yearly} value 
+   * @param {..., -3, -2, -1, 0, 1, 2, 3, 4, ...} range 
+   */
+
+
   getCategoriesRecords = async (value = "monthly", range = 0) => {
     this.setState({ categoryRange: range, categoryValue: value });
-
     try {
       await axios
         .get(
@@ -121,6 +125,10 @@ class Home extends Component {
     }
   };
 
+  /**
+   * get income amount
+   */
+
   getIncome = async () => {
     try {
       await axios
@@ -134,10 +142,16 @@ class Home extends Component {
     }
   };
 
+  /**
+   * get expense amount
+   */
+
   getExpense = async () => {
     try {
       await axios
-        .get(`https://financial-app-api.herokuapp.com/api/transactions/expenses`)
+        .get(
+          `https://financial-app-api.herokuapp.com/api/transactions/expenses`
+        )
         .then((res) => {
           this.setState({ expenseAmount: res.data.data });
         })
@@ -147,13 +161,18 @@ class Home extends Component {
     }
   };
 
+   /**
+   * get expense amount
+   */
+  
   getLatestTransactions = async () => {
     try {
       axios
-        .get(`https://financial-app-api.herokuapp.com/api/transactions/latest-transactions`)
+        .get(
+          `https://financial-app-api.herokuapp.com/api/transactions/latest-transactions`
+        )
         .then((res) => {
           this.setState({ latestTransactions: res.data.data.data });
-          // console.log(res.data.data.data);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -170,12 +189,7 @@ class Home extends Component {
           {this.state.ProfitGoal && (
             <ProfitGoal
               profit={this.state.ProfitGoal} //profit state in componrts profit goals
-              // profitId={this.state.ProfitGoal}
-              // key={ProfitGoal.id}
-
-              // data={ProfitGoal}
               percentage={this.getPercentage()}
-              // profitGoal={5000000}
               editState={() => this.setState({ editProfitGoal: true })}
             />
           )}

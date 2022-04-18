@@ -20,7 +20,7 @@ export function AdminsTable(props) {
   };
 
   return (
-    <Card class="table">
+    <Card class="table animate__slideInUp">
       <AdminsTableHead onChange={onChangeHandler} />
       <div className="table-content">
         {admins.map((admin) => {

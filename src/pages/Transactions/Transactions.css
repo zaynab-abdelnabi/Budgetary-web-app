@@ -3,9 +3,6 @@
   align-items: flex-start;
   gap: 2rem;
 }
-/* .transaction_content > div {
-  width: 50%;
-} */
 
 @media (max-width: 992px) {
   .transaction_content > div {

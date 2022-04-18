@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
-import "animate.css";
 import { Cards } from "../../components/Card/Card";
 import { AddButton } from "../../components/Buttons/Button";
 import TransactionDetails from "../../components/TransactionDetails/TransactionDetails";
 import { TransactionTable } from "../../components/TransactionTable/TransactionTable";
 import AddTransaction from "../../components/Forms/AddTransaction";
 import EditTransaction from "../../components/Forms/EditTransaction";
+import * as alert from "../../components/Alerts/Alert";
 import "./Transactions.css";
- 
 import LoadingComponent from "../../components/Loading/Loading";
 
 export class Transactions extends Component {
@@ -44,10 +42,11 @@ export class Transactions extends Component {
     if (type === "all") {
       try {
         axios
-          .get(`https://financial-app-api.herokuapp.com/api/transactions/list?page=${pageNumber}`)
+          .get(
+            `https://financial-app-api.herokuapp.com/api/transactions/list?page=${pageNumber}`
+          )
           .then((res) => {
             this.setState({ transactions: res.data.data, loading: false });
-            // console.log(res.data.data);
           })
           .catch((err) => console.log(err));
       } catch (e) {
@@ -61,7 +60,6 @@ export class Transactions extends Component {
           )
           .then((res) => {
             this.setState({ transactions: res.data.data, loading: false });
-            // console.log(res.data.data);
           })
           .catch((err) => console.log(err));
       } catch (e) {
@@ -86,7 +84,9 @@ export class Transactions extends Component {
   getExpense = async () => {
     try {
       await axios
-        .get(`https://financial-app-api.herokuapp.com/api/transactions/expenses`)
+        .get(
+          `https://financial-app-api.herokuapp.com/api/transactions/expenses`
+        )
         .then((res) => {
           this.setState({ expenseAmount: res.data.data });
         })
@@ -115,40 +115,17 @@ export class Transactions extends Component {
   };
 
   addNew = async (data) => {
-    // console.log(data);
     if (data.date) {
       await axios
-        .post(`https://financial-app-api.herokuapp.com/api/transactions/create/fixed`, data)
+        .post(
+          `https://financial-app-api.herokuapp.com/api/transactions/create/fixed`,
+          data
+        )
         .then((res) => {
           if (res.data.status === 401) {
-            Swal.fire({
-              icon: "error",
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.error(res.data.message);
           } else {
-            Swal.fire({
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.success(res.data.message);
             this.setState({
               loading: true,
               incomeAmount: "",
@@ -164,40 +141,18 @@ export class Transactions extends Component {
         .catch((err) => console.log(err.message));
     } else {
       await axios
-        .post(`https://financial-app-api.herokuapp.com/api/transactions/create/recurring`, data)
+        .post(
+          `https://financial-app-api.herokuapp.com/api/transactions/create/recurring`,
+          data
+        )
         .then((res) => {
           if (res.data.status === 401) {
-            Swal.fire({
-              icon: "error",
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.error(res.data.message);
             this.setState({
               error: res.data.message,
             });
           } else {
-            Swal.fire({
-              title: `${res.data.message}`,
-              showConfirmButton: true,
-              confirmButtonText: "Ok",
-              confirmButtonColor: "#f76928",
-              showClass: {
-                popup: "animate__animated animate__zoomIn",
-              },
-              hideClass: {
-                popup: "animate__animated animate__zoomOut",
-              },
-              timer: 3000,
-            });
+            alert.success(res.data.message);
             this.setState({
               loading: true,
               incomeAmount: "",
@@ -230,40 +185,15 @@ export class Transactions extends Component {
 
   editFixed = (id, data) => {
     axios
-      .put(`https://financial-app-api.herokuapp.com/api/transactions/edit/fixed/${id}`, data)
+      .put(
+        `https://financial-app-api.herokuapp.com/api/transactions/edit/fixed/${id}`,
+        data
+      )
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
-          this.setState({
-            error: res.data.message,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({
             loading: true,
             incomeAmount: "",
@@ -281,40 +211,15 @@ export class Transactions extends Component {
 
   editFutureRecurring = (id, data) => {
     axios
-      .put(`https://financial-app-api.herokuapp.com/api/transactions/edit/recurring/${id}`, data)
+      .put(
+        `https://financial-app-api.herokuapp.com/api/transactions/edit/recurring/${id}`,
+        data
+      )
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
-          this.setState({
-            error: res.data.message,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({
             loading: true,
             incomeAmount: "",
@@ -342,37 +247,9 @@ export class Transactions extends Component {
       )
       .then((res) => {
         if (res.data.status === 401) {
-          Swal.fire({
-            icon: "error",
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
-          this.setState({
-            error: res.data.message,
-          });
+          alert.error(res.data.message);
         } else {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({
             loading: true,
             incomeAmount: "",
@@ -395,21 +272,11 @@ export class Transactions extends Component {
   deleteById = (id, type) => {
     if (type === "fixed") {
       axios
-        .delete(`https://financial-app-api.herokuapp.com/api/transactions/${id}`)
+        .delete(
+          `https://financial-app-api.herokuapp.com/api/transactions/${id}`
+        )
         .then((res) => {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({
             transactions: {},
             detailsView: false,
@@ -427,19 +294,7 @@ export class Transactions extends Component {
       axios
         .delete(`https://financial-app-api.herokuapp.com/api/recurrings/${id}`)
         .then((res) => {
-          Swal.fire({
-            title: `${res.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.success(res.data.message);
           this.setState({
             transactions: {},
             detailsView: false,
@@ -484,7 +339,6 @@ export class Transactions extends Component {
             editView: true,
             type: type,
           });
-          // console.log(res.data.data);
         })
         .catch((err) => console.log(err));
     } catch (e) {
@@ -514,7 +368,7 @@ export class Transactions extends Component {
             />
           )}
           <div className="transaction_content">
-            {this.state.transactions && (
+            {this.state.transactions ? (
               <TransactionTable
                 transactions={this.state.transactions}
                 showDetails={(id) => {
@@ -523,11 +377,14 @@ export class Transactions extends Component {
                 filter={this.state.filterType}
                 onPaginate={(pageNumber, type) => {
                   this.setState({
-                    loading: true,
+                    transactions: null,
+                    // loading: true,
                   });
                   this.getAllData(pageNumber, type);
                 }}
               />
+            ) : (
+              <LoadingComponent />
             )}
 
             {this.state.detailsView && this.state.transaction && (

@@ -1,6 +1,6 @@
 .transaction_details {
   width: 700px;
-  padding-top: 2rem;
+  padding-top: 3.5rem;
 }
 
 .description {
@@ -30,6 +30,6 @@
 
 .transaction_details .transaction_date {
   position: absolute;
-  right: 10%;
-  top: 3%;
+  right: 11%;
+  top: 11%;
 }

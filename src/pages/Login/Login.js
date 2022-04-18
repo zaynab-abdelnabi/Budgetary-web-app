@@ -1,17 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../../components/Navbar/Navbar";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import * as alert from "../../components/Alerts/Alert";
 import "./Login.css";
-import axios from "axios";
-import Swal from "sweetalert2";
-import "animate.css";
- 
-import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useRouter } from 'next/router';
 
-function Login(props) {
+import { useNavigate } from "react-router-dom";
+
+function Login() {
   const [inputType, setInputType] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,56 +29,23 @@ function Login(props) {
       email,
       password,
     };
-    // console.log("logininfo ", loginINfo);
     axios
       .post(`https://financial-app-api.herokuapp.com/api/login`, loginINfo)
       .then((response) => {
-        console.log("response token ", response);
         if (response.data.status === 500 || response.data.status === 400) {
-          // console.log("wrong");
-          Swal.fire({
-            icon: "error",
-            title: `${response.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 3000,
-          });
+          alert.error(response.data.message);
         } else {
-          // console.log(response.data.data.original);
-          // console.log(response.data);
-          Swal.fire({
-            title: `${response.data.message}`,
-            showConfirmButton: true,
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#f76928",
-            showClass: {
-              popup: "animate__animated animate__zoomIn",
-            },
-            hideClass: {
-              popup: "animate__animated animate__zoomOut",
-            },
-            timer: 2000,
-          });
-          // useRouter.replace('/');
-          //  const navigate = props.useNavigate()
+          alert.success(response.data.message);
 
           localStorage.setItem("token", response.data.data.original.token);
           navigate("/");
           window.location.reload();
         }
-      });
-    // .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    // isLoggedIn ? <Link to={'./'}/> :
     <div className="login_page">
       <div className="logo_section">
         <span className="letter_logo">B</span>
@@ -93,7 +57,7 @@ function Login(props) {
           <FaRegUser style={{ marginRight: "1rem" }} />
           <span>Login</span>
         </div>
-        <div className="login_form">
+        <div className="login_form animate__animated animate__slideInUp">
           <form className="form" onSubmit={handleSubmit}>
             <label className="input_label">
               <span className="input_title">Email</span>
@@ -103,7 +67,6 @@ function Login(props) {
                 type="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                // onChange={handleSubmit}
               />
             </label>
             <label className="input_label">
@@ -129,12 +92,7 @@ function Login(props) {
             </label>
 
             <div style={{ margin: "0 auto" }}>
-              <button
-                type="Submit"
-                className="btn btn-submit"
-                // onClick={this.loginAdmin}
-                // onClick={() => navigate('/')}
-              >
+              <button type="Submit" className="btn btn-submit">
                 Submit
               </button>
             </div>

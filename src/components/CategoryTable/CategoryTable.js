@@ -21,7 +21,7 @@ export function CategoriesTable(props) {
   };
 
   return (
-    <Card class="table categories">
+    <Card class="table categories animate__slideInUp">
       <CategoriesTableHead
         status={(type) => getByType(type)}
         onAddClick={() => {

@@ -9,7 +9,7 @@ export function TransactionTable(props) {
   const { data, current_page, per_page, total } = props.transactions;
 
   return (
-    <Card class="table">
+    <Card class="table animate__slideInUp">
       <TransactionTableHead
         filter={props.filter}
         status={(type) => {
@@ -17,7 +17,7 @@ export function TransactionTable(props) {
         }}
       />
       <div className="table-content">
-        {data.map((transaction) => {
+        {data && data.map((transaction) => {
           return (
             <TransactionItem
               key={transaction.id}
