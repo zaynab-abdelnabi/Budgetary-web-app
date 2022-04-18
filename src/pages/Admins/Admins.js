@@ -145,19 +145,23 @@ export default class Admins extends Component {
    * @param {*} id
    */
 
-  deleteById = async (id) => {
-    try {
-      await axios
-        .delete(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
-        .then((res) => {
-          alert.success(res.data.message);
-          this.setState({ loading: true, editView: false, addView: false });
-          this.getAllData();
-        })
-        .catch((err) => console.log(err));
-    } catch (e) {
-      console.log(e);
-    }
+  deleteById = (id) => {
+    alert.confirmDelete().then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios
+            .delete(`https://financial-app-api.herokuapp.com/api/admins/${id}`)
+            .then((res) => {
+              alert.success(res.data.message);
+              this.setState({ loading: true, editView: false, addView: false });
+              this.getAllData();
+            })
+            .catch((err) => console.log(err));
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    });
   };
 
   render() {
